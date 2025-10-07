@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BridgewellEventSDK Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .data-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .data-item {
+            margin: 10px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+        .label {
+            font-weight: bold;
+            color: #495057;
+        }
+        .value {
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #007bff;
+            word-break: break-all;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌉 BridgewellEventSDK</h1>
+            <p>Test Page for WebView Integration</p>
+        </div>
+
+        <div id="status" class="status warning">
+            ⏳ Waiting for SDK injection...
+        </div>
+
+        <div class="data-section">
+            <h3>📱 Injected Data</h3>
+            <div class="data-item">
+                <div class="label">App ID:</div>
+                <div class="value" id="app-id">Not available</div>
+            </div>
+            <div class="data-item">
+                <div class="label">IDFA/ADID:</div>
+                <div class="value" id="idfa-adid">Not available</div>
+            </div>
+            <div class="data-item">
+                <div class="label">SDK Available:</div>
+                <div class="value" id="sdk-available">❌ No</div>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h3>🔧 Actions</h3>
+            <button class="button" onclick="checkSDKData()">🔄 Refresh Data</button>
+            <button class="button" onclick="logToConsole()">📝 Log to Console</button>
+            <button class="button" onclick="testJavaScript()">⚡ Test JavaScript</button>
+        </div>
+
+        <div class="data-section">
+            <h3>📊 Debug Information</h3>
+            <div class="data-item">
+                <div class="label">User Agent:</div>
+                <div class="value" id="user-agent">Loading...</div>
+            </div>
+            <div class="data-item">
+                <div class="label">Page Load Time:</div>
+                <div class="value" id="load-time">Loading...</div>
+            </div>
+            <div class="data-item">
+                <div class="label">Last Check:</div>
+                <div class="value" id="last-check">Never</div>
+            </div>
+        </div>
+
+        <div class="timestamp" id="timestamp">
+            Page loaded at: <span id="load-timestamp"></span>
+        </div>
+    </div>
+
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            document.getElementById('load-timestamp').textContent = now.toLocaleString();
+            document.getElementById('user-agent').textContent = navigator.userAgent;
+            document.getElementById('load-time').textContent = (performance.now()).toFixed(2) + ' ms';
+            
+            // Check for SDK data immediately
+            checkSDKData();
+            
+            // Set up periodic checking
+            setInterval(checkSDKData, 1000);
+        });
+
+        function checkSDKData() {
+            const now = new Date().toLocaleTimeString();
+            document.getElementById('last-check').textContent = now;
+            
+            if (window.bwsMobile) {
+                // SDK data is available
+                document.getElementById('status').className = 'status success';
+                document.getElementById('status').innerHTML = '✅ BridgewellEventSDK data successfully injected!';
+                
+                document.getElementById('app-id').textContent = window.bwsMobile.app_id || 'Not provided';
+                document.getElementById('idfa-adid').textContent = window.bwsMobile.idfa_adid || 'Not available (no consent or simulator)';
+                document.getElementById('sdk-available').innerHTML = '✅ Yes';
+                
+                // Log to console
+                console.log('BridgewellEventSDK Data:', window.bwsMobile);
+            } else {
+                // SDK data not available
+                document.getElementById('status').className = 'status warning';
+                document.getElementById('status').innerHTML = '⏳ BridgewellEventSDK data not yet available...';
+                
+                document.getElementById('app-id').textContent = 'Not available';
+                document.getElementById('idfa-adid').textContent = 'Not available';
+                document.getElementById('sdk-available').innerHTML = '❌ No';
+            }
+        }
+
+        function logToConsole() {
+            console.log('=== BridgewellEventSDK Debug Info ===');
+            console.log('SDK Available:', !!window.bwsMobile);
+            console.log('SDK Data:', window.bwsMobile);
+            console.log('User Agent:', navigator.userAgent);
+            console.log('Timestamp:', new Date().toISOString());
+            console.log('=====================================');
+            
+            alert('Debug information logged to console. Check the browser/WebView console.');
+        }
+
+        function testJavaScript() {
+            try {
+                // Test basic JavaScript functionality
+                const testResult = {
+                    mathTest: 2 + 2 === 4,
+                    dateTest: new Date() instanceof Date,
+                    jsonTest: JSON.stringify({test: true}) === '{"test":true}',
+                    sdkTest: typeof window.bwsMobile !== 'undefined'
+                };
+                
+                console.log('JavaScript Test Results:', testResult);
+                
+                const allPassed = Object.values(testResult).every(result => result === true);
+                const message = allPassed ? 
+                    '✅ All JavaScript tests passed!' : 
+                    '⚠️ Some JavaScript tests failed. Check console for details.';
+                
+                alert(message);
+            } catch (error) {
+                console.error('JavaScript test error:', error);
+                alert('❌ JavaScript test failed: ' + error.message);
+            }
+        }
+
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('Page Error:', event.error);
+        });
+
+        // Listen for SDK injection (custom event approach)
+        window.addEventListener('bwsSDKInjected', function(event) {
+            console.log('SDK injection event received:', event.detail);
+            checkSDKData();
+        });
+    </script>
+</body>
+</html>
