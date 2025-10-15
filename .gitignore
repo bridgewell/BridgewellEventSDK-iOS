@@ -1,0 +1,46 @@
+# Keep workspace and project files needed for SDK publishing
+!BridgeWellEventSDK.xcworkspace/
+!BridgeWellEventSDK.xcworkspace/contents.xcworkspacedata
+!BridgeWellEventSDK.xcworkspace/xcshareddata/
+
+!BridgewellEventSDK/BridgewellEventSDK.xcodeproj/project.xcworkspace/
+!BridgewellEventSDK/BridgewellEventSDK.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+!Examples/SwiftExample/BRG-SwiftExample.xcodeproj/xcshareddata/
+!Examples/SwiftExample/BRG-SwiftExample.xcodeproj/xcshareddata/**
+
+# Ignore user-specific data
+**/xcuserdata/
+*.xcuserstate
+**/*.xcuserstate
+
+# Ignore build artifacts
+.build/
+build/
+
+# Ignore macOS system files
+.DS_Store
+**/.DS_Store
+
+# Keep Package.swift and podspec files
+!Package.swift
+!*.podspec
+
+# Keep documentation and example files
+!docs/
+!docs/**
+!Examples/
+!Examples/**
+
+# But still ignore user data within Examples
+Examples/**/xcuserdata/
+
+# Keep build scripts
+!build-xcframework.sh
+
+# Keep LICENSE and README files
+!LICENSE
+!README.md
+
+# Ignore dist folder completely (CI/CD will generate these)
+dist/
