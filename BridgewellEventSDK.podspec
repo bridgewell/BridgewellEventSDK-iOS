@@ -35,10 +35,10 @@ Pod::Spec.new do |spec|
   spec.cocoapods_version = ">= 1.10.0"
   
   # Documentation
-  spec.documentation_url = "https://bridgewell.github.io/iOS-BridgewellEventSDK/"
-  
+  # spec.documentation_url = "https://bridgewell.github.io/iOS-BridgewellEventSDK/"
+
   # Social media
-  spec.social_media_url = "https://twitter.com/bridgewell"
+  # spec.social_media_url = "https://twitter.com/bridgewell"
   
   # Screenshots (optional)
   # spec.screenshots = ["https://example.com/screenshot1.png"]
