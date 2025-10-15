@@ -28,7 +28,12 @@ let package = Package(
                 "BridgewellEventSDK.swift",
                 "BridgewellConfig.swift",
                 "BridgewellError.swift",
-                "BridgewellLogger.swift"
+                "BridgewellLogger.swift",
+                "BridgewellLocationManager.swift",
+                "BridgewellWebKitHandler.swift",
+                "BridgewellDataModels.swift",
+                "BridgewellDataHelper.swift",
+                "BridgewellNetworkMonitor.swift"
             ],
             publicHeadersPath: nil,
             cSettings: nil,

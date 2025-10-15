@@ -219,23 +219,18 @@ public final class BridgewellEvent: NSObject, @unchecked Sendable {
 
         logger.log("Injecting payload into WebView", level: .debug)
 
-        if #available(iOS 13.0, *) {
-            return try await withCheckedThrowingContinuation { [weak self] continuation in
-                DispatchQueue.main.async {
-                    webView.evaluateJavaScript(jsPayload) { result, error in
-                        if let error = error {
-                            self?.logger.log("JavaScript injection failed: \(error.localizedDescription)", level: .error)
-                            continuation.resume(throwing: BridgewellError.injectionFailed(error))
-                        } else {
-                            self?.logger.log("JavaScript injection successful", level: .info)
-                            continuation.resume(returning: true)
-                        }
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            DispatchQueue.main.async {
+                webView.evaluateJavaScript(jsPayload) { result, error in
+                    if let error = error {
+                        self?.logger.log("JavaScript injection failed: \(error.localizedDescription)", level: .error)
+                        continuation.resume(throwing: BridgewellError.injectionFailed(error))
+                    } else {
+                        self?.logger.log("JavaScript injection successful", level: .info)
+                        continuation.resume(returning: true)
                     }
                 }
             }
-        } else {
-            // Fallback for iOS < 13.0 (though this method is marked as iOS 13.0+)
-            throw BridgewellError.unsupportedWebView
         }
     }
 
@@ -274,7 +269,11 @@ public final class BridgewellEvent: NSObject, @unchecked Sendable {
 
             switch status {
             case .authorized:
-                return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                if #available(iOS 6.0, *) {
+                    return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                } else {
+                    return ""
+                }
             case .denied, .restricted, .notDetermined:
                 logger.log("IDFA access denied or not determined", level: .info)
                 return ""

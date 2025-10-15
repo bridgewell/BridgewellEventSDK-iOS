@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.swift_version = "5.7"
 
   spec.source_files = "BridgewellEventSDK/BridgewellEventSDK/**/*.{swift,h,m}"
-  spec.public_header_files = "BridgewellEventSDK/BridgewellEventSDK/**/*.h"
+  # spec.public_header_files = "BridgewellEventSDK/BridgewellEventSDK/**/*.h"
   
   spec.frameworks = "Foundation", "WebKit", "AdSupport", "AppTrackingTransparency"
   
