@@ -16,10 +16,10 @@ Pod::Spec.new do |spec|
     - Comprehensive test coverage
   DESC
 
-  spec.homepage     = "https://github.com/bridgewell/iOS-BridgewellEventSDK"
+  spec.homepage     = "https://github.com/bridgewell/BridgewellEventSDK-iOS"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author       = { "Bridgewell" => "support@bridgewell.com" }
-  spec.source       = { :git => "https://github.com/bridgewell/iOS-BridgewellEventSDK.git", :tag => "v#{spec.version}" }
+  spec.source       = { :git => "https://github.com/bridgewell/BridgewellEventSDK-iOS.git", :tag => "v#{spec.version}" }
 
   spec.ios.deployment_target = "12.0"
   spec.swift_version = "5.7"
