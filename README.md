@@ -1,7 +1,7 @@
 # BridgewellEventSDK
 
-[![CI](https://github.com/bridgewell/iOS-BridgewellEventSDK/actions/workflows/ci.yml/badge.svg)](https://github.com/bridgewell/iOS-BridgewellEventSDK/actions/workflows/ci.yml)
-[![CD](https://github.com/bridgewell/iOS-BridgewellEventSDK/actions/workflows/cd.yml/badge.svg)](https://github.com/bridgewell/iOS-BridgewellEventSDK/actions/workflows/cd.yml)
+[![CI](https://github.com/bridgewell/BridgewellEventSDK-iOS/actions/workflows/ci.yml/badge.svg)](https://github.com/bridgewell/BridgewellEventSDK-iOS/actions/workflows/ci.yml)
+[![Publish](https://github.com/bridgewell/BridgewellEventSDK-iOS/actions/workflows/publish.yml/badge.svg)](https://github.com/bridgewell/BridgewellEventSDK-iOS/actions/workflows/publish.yml)
 [![CocoaPods](https://img.shields.io/cocoapods/v/BridgewellEventSDK.svg)](https://cocoapods.org/pods/BridgewellEventSDK)
 [![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![Platform](https://img.shields.io/cocoapods/p/BridgewellEventSDK.svg)](https://cocoapods.org/pods/BridgewellEventSDK)
@@ -27,13 +27,13 @@ Add the following dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/bridgewell/iOS-BridgewellEventSDK.git", from: "0.1.0")
+    .package(url: "https://github.com/bridgewell/BridgewellEventSDK-iOS.git", from: "0.1.0")
 ]
 ```
 
 Or add it through Xcode:
 1. File > Add Package Dependencies
-2. Enter: `https://github.com/bridgewell/iOS-BridgewellEventSDK.git`
+2. Enter: `https://github.com/bridgewell/BridgewellEventSDK-iOS.git`
 
 ### CocoaPods
 
@@ -250,7 +250,7 @@ ATTrackingManager.requestTrackingAuthorization { status in
 
 ### Requirements
 
-- iOS 12.0+
+- iOS 13.0+
 - Xcode 14.0+
 - Swift 5.7+
 
@@ -258,8 +258,8 @@ ATTrackingManager.requestTrackingAuthorization { status in
 
 ```bash
 # Clone the repository
-git clone https://github.com/bridgewell/iOS-BridgewellEventSDK.git
-cd iOS-BridgewellEventSDK
+git clone https://github.com/bridgewell/BridgewellEventSDK-iOS.git
+cd BridgewellEventSDK-iOS
 
 # Open in Xcode
 open BridgewellEventSDK.xcodeproj
@@ -292,15 +292,18 @@ This project uses GitHub Actions for continuous integration and deployment:
 
 ### CI Workflow
 - Runs on every push and pull request
-- Executes unit tests and UI tests
-- Performs code formatting checks
+- Tests on multiple iOS versions (15.0, 16.0, 17.0)
+- Validates Swift Package Manager and CocoaPods integration
+- Performs SwiftLint code quality checks
 - Generates coverage reports
 
-### CD Workflow
-- Triggers on version tags (`v*.*.*`)
-- Publishes to CocoaPods
-- Updates Swift Package Manager
-- Creates GitHub releases
+### Publish Workflow
+- Triggers on GitHub releases or manual dispatch
+- Validates SDK with comprehensive tests
+- Publishes to CocoaPods Trunk automatically
+- Creates GitHub releases with installation instructions
+
+For detailed setup instructions, see [GitHub Actions Setup Guide](docs/github-actions-setup.md).
 
 ## Changelog
 
@@ -313,7 +316,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 - 📧 Email: support@bridgewell.com
-- 📖 Documentation: [Full API Documentation](https://bridgewell.github.io/iOS-BridgewellEventSDK/)
-- 🐛 Issues: [GitHub Issues](https://github.com/bridgewell/iOS-BridgewellEventSDK/issues)
+- 📖 Documentation: [Full API Documentation](https://bridgewell.github.io/BridgewellEventSDK-iOS/)
+- 🐛 Issues: [GitHub Issues](https://github.com/bridgewell/BridgewellEventSDK-iOS/issues)
 
 ---
+
+<!-- Test CI workflow trigger -->

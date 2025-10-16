@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "Bridgewell" => "support@bridgewell.com" }
   spec.source       = { :git => "https://github.com/bridgewell/BridgewellEventSDK-iOS.git", :tag => "v#{spec.version}" }
 
-  spec.ios.deployment_target = "12.0"
+  spec.ios.deployment_target = "13.0"
   spec.swift_version = "5.7"
 
   spec.source_files = "BridgewellEventSDK/BridgewellEventSDK/**/*.{swift,h,m}"

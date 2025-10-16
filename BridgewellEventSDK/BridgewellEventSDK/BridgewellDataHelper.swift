@@ -9,7 +9,9 @@ import Foundation
 import CoreTelephony
 import AppTrackingTransparency
 import AdSupport
+#if canImport(UIKit)
 import UIKit
+#endif
 import CoreLocation
 import Network
 
@@ -57,6 +59,7 @@ class BridgewellDataHelper {
      Creates device information object
      */
     static func getDeviceInformation() -> BwsDevice {
+        #if canImport(UIKit)
         let screen = UIScreen.main
         let screenBounds = screen.bounds
         let screenScale = screen.scale
@@ -64,6 +67,12 @@ class BridgewellDataHelper {
         let screenWidthInPixels = Int(screenBounds.width * screenScale)
         let screenHeightInPixels = Int(screenBounds.height * screenScale)
         let ratioInMillis = Int((screenBounds.height / screenBounds.width) * 1000)
+        #else
+        // Default values for non-iOS platforms
+        let screenWidthInPixels = 375
+        let screenHeightInPixels = 667
+        let ratioInMillis = Int((667.0 / 375.0) * 1000) // Default iPhone ratio
+        #endif
         
         let limitAdTracking: Bool
         if #available(iOS 14, *) {
@@ -105,7 +114,11 @@ class BridgewellDataHelper {
      Gets OS version components
      */
     static func getOSVersionComponents() -> BwsOS? {
+        #if canImport(UIKit)
         let systemVersion = UIDevice.current.systemVersion
+        #else
+        let systemVersion = ProcessInfo.processInfo.operatingSystemVersionString
+        #endif
         let versionComponents = systemVersion.split(separator: ".").compactMap { Int($0) }
         return BwsOS(
             major: versionComponents.count > 0 ? versionComponents[0] : nil,
@@ -140,6 +153,7 @@ class BridgewellDataHelper {
      Gets current device orientation
      */
     static func getDeviceCurrentOrientation() -> BwsScreenOrientation {
+        #if canImport(UIKit)
         let orientation = UIDevice.current.orientation
         switch orientation {
         case .portrait, .portraitUpsideDown:
@@ -149,6 +163,10 @@ class BridgewellDataHelper {
         default:
             return .UNKNOWN
         }
+        #else
+        // Default to portrait for non-iOS platforms
+        return .PORTRAIT
+        #endif
     }
     
     /**

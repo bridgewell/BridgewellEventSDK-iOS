@@ -47,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - JavaScript object: `window.bwsMobile` with `app_id` and `idfa_adid` properties
 
 ### Requirements
-- iOS 12.0+
+- iOS 13.0+
 - Xcode 14.0+
 - Swift 5.7+
 - CocoaPods 1.10.0+ (for CocoaPods integration)
