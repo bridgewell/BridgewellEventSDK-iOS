@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BridgewellEventSDK Device Data Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007AFF;
+            padding-bottom: 5px;
+        }
+        .data-display {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.waiting {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BridgewellEventSDK Device Data Injection Test</h1>
+        
+        <div id="status" class="status waiting">
+            ⏳ Waiting for SDK data injection...
+        </div>
+        
+        <div class="section">
+            <h2>A. WebView connected to BWS SDK</h2>
+            <div id="mobile-data" class="data-display">Waiting for data...</div>
+        </div>
+        
+        <div class="section">
+            <h2>B. Device Geo</h2>
+            <div id="geo-data" class="data-display">Waiting for data...</div>
+        </div>
+        
+        <div class="section">
+            <h2>C. Device</h2>
+            <div id="device-data" class="data-display">Waiting for data...</div>
+        </div>
+        
+        <div class="section">
+            <h2>D. SDK</h2>
+            <div id="sdk-data" class="data-display">Waiting for data...</div>
+        </div>
+        
+        <div class="section">
+            <h2>Debug Information</h2>
+            <div id="debug-info" class="data-display">Debug logs will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        // Debug logging function
+        function debugLog(message) {
+            const debugDiv = document.getElementById('debug-info');
+            const timestamp = new Date().toLocaleTimeString();
+            debugDiv.textContent += `[${timestamp}] ${message}\n`;
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+            console.log(`[BridgewellTest] ${message}`);
+        }
+
+        // Function to format JSON data nicely
+        function formatJsonData(data, label) {
+            try {
+                if (typeof data === 'object' && data !== null) {
+                    return JSON.stringify(data, null, 2);
+                } else if (typeof data === 'string') {
+                    // Try to parse as JSON
+                    const parsed = JSON.parse(data);
+                    return JSON.stringify(parsed, null, 2);
+                } else {
+                    return `${label}: ${data}`;
+                }
+            } catch (e) {
+                return `${label} (raw): ${data}`;
+            }
+        }
+
+        // Function called by the SDK when data is ready
+        window.onSdkDataReady = function(mobile, geo, device, sdk) {
+            debugLog('onSdkDataReady called!');
+            debugLog(`Mobile data type: ${typeof mobile}, value: ${JSON.stringify(mobile)}`);
+            debugLog(`Geo data type: ${typeof geo}, value: ${JSON.stringify(geo)}`);
+            debugLog(`Device data type: ${typeof device}, value: ${JSON.stringify(device)}`);
+            debugLog(`SDK data type: ${typeof sdk}, value: ${JSON.stringify(sdk)}`);
+            
+            // Update status
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status success';
+            statusDiv.textContent = '✅ SDK data injection completed successfully!';
+            
+            // Display mobile data
+            const mobileDiv = document.getElementById('mobile-data');
+            if (mobile) {
+                mobileDiv.textContent = formatJsonData(mobile, 'Mobile');
+            } else {
+                mobileDiv.textContent = 'Mobile data: null';
+            }
+            
+            // Display geo data
+            const geoDiv = document.getElementById('geo-data');
+            if (geo) {
+                geoDiv.textContent = formatJsonData(geo, 'Geo');
+            } else {
+                geoDiv.textContent = 'Geo data: null';
+            }
+            
+            // Display device data
+            const deviceDiv = document.getElementById('device-data');
+            if (device) {
+                deviceDiv.textContent = formatJsonData(device, 'Device');
+            } else {
+                deviceDiv.textContent = 'Device data: null';
+            }
+            
+            // Display SDK data
+            const sdkDiv = document.getElementById('sdk-data');
+            if (sdk) {
+                sdkDiv.textContent = formatJsonData(sdk, 'SDK');
+            } else {
+                sdkDiv.textContent = 'SDK data: null';
+            }
+            
+            debugLog('All data displayed successfully');
+        };
+
+        // Initialize page
+        debugLog('Page loaded, waiting for SDK data injection...');
+        debugLog(`onSdkDataReady function defined: ${typeof window.onSdkDataReady}`);
+        
+        // Set a timeout to show error if data doesn't arrive
+        setTimeout(function() {
+            if (document.getElementById('status').className.includes('waiting')) {
+                const statusDiv = document.getElementById('status');
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '❌ Timeout: SDK data injection did not complete within 10 seconds';
+                debugLog('Timeout: No data received from SDK');
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

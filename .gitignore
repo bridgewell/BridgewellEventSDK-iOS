@@ -44,3 +44,5 @@ Examples/**/xcuserdata/
 
 # Ignore dist folder completely (CI/CD will generate these)
 dist/
+Examples/.DS_Store
+Examples/ObjectiveCExample/.DS_Store

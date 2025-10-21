@@ -20,7 +20,25 @@ A complete iOS app written in Swift that demonstrates:
 - Comprehensive error handling
 - UI for testing different scenarios
 
-### 2. ObjectiveCExample
+### 2. SwiftUIExample
+A complete iOS app written in SwiftUI that demonstrates:
+- SDK initialization with configuration
+- SwiftUI-based modern UI architecture
+- WebView integration using UIViewRepresentable
+- Asynchronous SDK setup and data injection
+- Error handling and loading states
+- ATT permission handling
+
+**Location**: `SwiftUIExample/`
+
+**Key Features**:
+- Modern SwiftUI implementation (iOS 13.0+)
+- Declarative UI with state management
+- UIViewRepresentable for WebView integration
+- Comprehensive error handling
+- Loading states and user feedback
+
+### 3. ObjectiveCExample
 A complete iOS app written in Objective-C that demonstrates:
 - SDK initialization from Objective-C
 - WebView integration
@@ -46,13 +64,19 @@ A complete iOS app written in Objective-C that demonstrates:
 
 #### Swift Example
 1. Navigate to `Examples/SwiftExample/`
-2. Open `SwiftExample.xcodeproj` in Xcode
+2. Open `BRG-SwiftExample.xcodeproj` in Xcode
+3. Select your target device or simulator
+4. Build and run the project
+
+#### SwiftUI Example
+1. Navigate to `Examples/SwiftUIExample/`
+2. Open `BRG-SwiftUIExample.xcodeproj` in Xcode
 3. Select your target device or simulator
 4. Build and run the project
 
 #### Objective-C Example
 1. Navigate to `Examples/ObjectiveCExample/`
-2. Open `ObjectiveCExample.xcodeproj` in Xcode
+2. Open `BRG-ObjectiveCExample.xcodeproj` in Xcode
 3. Select your target device or simulator
 4. Build and run the project
 
@@ -60,8 +84,8 @@ A complete iOS app written in Objective-C that demonstrates:
 
 Each example project demonstrates different installation methods:
 
-#### Swift Package Manager (SwiftExample)
-The Swift example uses SPM integration:
+#### Swift Package Manager (SwiftExample & SwiftUIExample)
+The Swift and SwiftUI examples use SPM integration:
 - File → Add Package Dependencies
 - Enter: `https://github.com/bridgewell/iOS-BridgewellEventSDK.git`
 

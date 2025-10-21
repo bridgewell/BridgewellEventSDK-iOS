@@ -19,8 +19,9 @@
 /* Begin PBXFileReference section */
 		BD13B3272E83F0F300961FF6 /* BRG-SwiftExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BRG-SwiftExample.xcodeproj"; path = "../Examples/SwiftExample/BRG-SwiftExample.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BD13B33F2E83F10100961FF6 /* BRG-ObjectiveCExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BRG-ObjectiveCExample.xcodeproj"; path = "../Examples/ObjectiveCExample/BRG-ObjectiveCExample.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		BD7424D92E7D53240075ACA5 /* BridgewellEventSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BridgewellEventSDK.framework; path = "/Users/klinh/Documents/1.office/vmo-2/brg-ios-thu18sep2025/iOS-BridgewellEventSDK/BridgewellEventSDK/build/Debug-iphoneos/BridgewellEventSDK.framework"; sourceTree = "<absolute>"; };
 		BD7424E22E7D53250075ACA5 /* BridgewellEventSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BridgewellEventSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BE66AB2EA77C5200F57120 /* BridgewellEventSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BridgewellEventSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BE66E72EA77C7900F57120 /* BRG-SwiftUIExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BRG-SwiftUIExample.xcodeproj"; path = "../Examples/SwiftUIExample/BRG-SwiftUIExample.xcodeproj"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -76,6 +77,7 @@
 				BD7424DA2E7D53240075ACA5 /* Products */,
 				BD13B3272E83F0F300961FF6 /* BRG-SwiftExample.xcodeproj */,
 				BD13B33F2E83F10100961FF6 /* BRG-ObjectiveCExample.xcodeproj */,
+				F0BE66E72EA77C7900F57120 /* BRG-SwiftUIExample.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +85,14 @@
 			isa = PBXGroup;
 			children = (
 				BD7424E22E7D53250075ACA5 /* BridgewellEventSDKTests.xctest */,
+				F0BE66AB2EA77C5200F57120 /* BridgewellEventSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0BE66F42EA77C7900F57120 /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,7 +130,7 @@
 			packageProductDependencies = (
 			);
 			productName = BridgewellEventSDK;
-			productReference = BD7424D92E7D53240075ACA5 /* BridgewellEventSDK.framework */;
+			productReference = F0BE66AB2EA77C5200F57120 /* BridgewellEventSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BD7424E12E7D53250075ACA5 /* BridgewellEventSDKTests */ = {
@@ -184,6 +194,10 @@
 				{
 					ProductGroup = BD13B33A2E83F0F300961FF6 /* Products */;
 					ProjectRef = BD13B3272E83F0F300961FF6 /* BRG-SwiftExample.xcodeproj */;
+				},
+				{
+					ProductGroup = F0BE66F42EA77C7900F57120 /* Products */;
+					ProjectRef = F0BE66E72EA77C7900F57120 /* BRG-SwiftUIExample.xcodeproj */;
 				},
 			);
 			projectRoot = "";

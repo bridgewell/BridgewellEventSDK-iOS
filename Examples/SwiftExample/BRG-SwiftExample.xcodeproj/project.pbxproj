@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BDC4A5472E827EC20052FADE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC4A5462E827EC20052FADE /* WebKit.framework */; };
+		F0BE66A82EA7785300F57120 /* BridgewellEventSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BE66A72EA7785300F57120 /* BridgewellEventSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +27,7 @@
 /* Begin PBXFileReference section */
 		BDC4A52E2E827EC00052FADE /* BRG-SwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BRG-SwiftExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDC4A5462E827EC20052FADE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		BDC4A5492E827EC20052FADE /* BridgewellEventSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BridgewellEventSDK.xcframework; path = ../../dist/BridgewellEventSDK.xcframework; sourceTree = "<group>"; };
+		F0BE66A72EA7785300F57120 /* BridgewellEventSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BridgewellEventSDK.framework; path = "/Users/vmo-mini/Library/Developer/Xcode/DerivedData/BridgeWellEventSDK-eswbctdelkjitrehuoicnisqcflh/Build/Products/Debug-iphonesimulator/BridgewellEventSDK.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDC4A5472E827EC20052FADE /* WebKit.framework in Frameworks */,
+				F0BE66A82EA7785300F57120 /* BridgewellEventSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				BDC4A5462E827EC20052FADE /* WebKit.framework */,
-				BDC4A5492E827EC20052FADE /* BridgewellEventSDK.xcframework */,
+				F0BE66A72EA7785300F57120 /* BridgewellEventSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
