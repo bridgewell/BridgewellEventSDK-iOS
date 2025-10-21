@@ -140,3 +140,13 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO
+
+    - name: Validate SwiftUI Example
+      run: |
+        cd Examples/SwiftUIExample
+        xcodebuild build \
+          -project BRG-SwiftUIExample.xcodeproj \
+          -scheme BRG-SwiftUIExample \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
